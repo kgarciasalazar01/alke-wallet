@@ -1,0 +1,113 @@
+<!-- Pagina Sendmoney (enviar dinero) en español -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"> <!-- Define la codificación de caracteres. UTF-8 permite mostrar acentos y caracteres especiales -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Hace que la página se adapte a pantallas pequeñas (responsiva) -->
+  <title>Wallet - Enviar Dinero</title> <!-- Título que aparece en la pestaña del navegador -->
+
+  <!-- Bootstrap 5 CSS: librería que da estilos predefinidos (botones, formularios, tarjetas, etc.) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Archivo CSS propio para personalizar estilos -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Contenedor principal de la página -->
+  <div class="container sendmoney py-5">
+    <!-- Tarjeta centrada con sombra y ancho máximo de 600px -->
+    <div class="card shadow-sm mx-auto sendmoney-card" style="max-width: 600px;">
+      <div class="card-body">
+        <!-- Título principal -->
+        <h2 class="text-center mb-4">Enviar Dinero</h2>
+
+        <!-- Formulario de búsqueda de contactos -->
+        <form id="buscarFormulario" class="text-center mb-3">
+          <div class="mx-auto" style="max-width: 400px;">
+            <!-- Campo de texto para buscar por alias o nombre -->
+            <input type="text" id="buscarInput" class="form-control mb-2" placeholder="Buscar por alias o nombre">
+            <!-- Botón para ejecutar la búsqueda -->
+            <button type="submit" class="btn btn-info btn-fit">Buscar</button>
+          </div>
+        </form>
+
+        <!-- Botón para abrir el modal y agregar un nuevo contacto -->
+        <div class="text-center mb-3">
+          <button id="openModalBtn" class="btn btn-primary btn-fit">Agregar nuevo contacto</button>
+        </div>
+
+        <!-- Lista donde se mostrarán los contactos guardados -->
+        <h3 class="mt-4">Contactos</h3>
+        <ul id="contactoLista" class="list-group mb-3"></ul>
+
+        <!-- Bloque oculto que aparece al seleccionar un contacto -->
+        <div id="montoSection" style="display:none;" class="mt-3">
+          <!-- Aquí se mostrarán los detalles del contacto seleccionado -->
+          <div id="contactoDetalles" class="mb-2"></div>
+          <!-- Campo para ingresar el monto a enviar -->
+          <div class="mb-3">
+            <label for="monto" class="form-label">Monto a enviar:</label>
+            <input type="number" class="form-control" id="monto" placeholder="Ej: 500" min="1">
+          </div>
+          <!-- Botón para confirmar el envío -->
+          <div class="text-center">
+            <button id="enviarDineroBtn" class="btn btn-success btn-fit">Enviar dinero</button>
+          </div>
+        </div>
+
+        <!-- Mensaje de confirmación (aparece después de enviar dinero) -->
+        <div id="confirmationMessage" class="alert alert-success mt-3" style="display:none;"></div>
+
+        <!-- Navegación: botones para volver al menú o cerrar sesión -->
+        <div class="d-flex flex-column align-items-center gap-2 mt-4">
+          <a href="menu.html" class="btn btn-secondary btn-fit">Volver al Menú Principal</a>
+          <a href="login.html" class="btn btn-danger btn-fit">Cerrar Sesión</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal oculto para agregar un nuevo contacto -->
+  <div class="modal fade" id="contactoModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content p-3">
+        <h4>Nuevo Contacto</h4>
+        <!-- Formulario dentro del modal -->
+        <form id="modalForm">
+          <!-- Campo nombre y apellido -->
+          <div class="mb-3">
+            <label for="modalNombre" class="form-label">Nombre y Apellido:</label>
+            <input type="text" class="form-control" id="modalNombre" required>
+          </div>
+          <!-- Campo CBU (número de identificación bancaria) -->
+          <div class="mb-3">
+            <label for="modalCBU" class="form-label">Número de CBU:</label>
+            <input type="text" class="form-control" id="modalCBU" required>
+          </div>
+          <!-- Campo alias -->
+          <div class="mb-3">
+            <label for="modalAlias" class="form-label">Alias:</label>
+            <input type="text" class="form-control" id="modalAlias" required>
+          </div>
+          <!-- Campo banco -->
+          <div class="mb-3">
+            <label for="modalBanco" class="form-label">Banco:</label>
+            <input type="text" class="form-control" id="modalBanco" required>
+          </div>
+          <!-- Botones dentro del modal -->
+          <div class="d-flex justify-content-end gap-2">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="button" id="closeModalBtn" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap 5 JS: necesario para que funcionen componentes dinámicos como el modal -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Archivo JS propio donde se programa la lógica de enviar dinero -->
+  <script src="js/sendmoney.js"></script>
+</body>
+</html>

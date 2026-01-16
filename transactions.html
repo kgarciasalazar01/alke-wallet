@@ -1,0 +1,58 @@
+<!-- Pagina transactions (transacciones) en español -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"> <!-- Define la codificación de caracteres. UTF-8 permite mostrar acentos y caracteres especiales -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Hace que la página se adapte a pantallas pequeñas (responsiva) -->
+  <title>Últimos Movimientos</title> <!-- Título que aparece en la pestaña del navegador -->
+
+  <!-- Bootstrap 5: librería que da estilos predefinidos (botones, formularios, tarjetas, etc.) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Archivo CSS propio para personalizar estilos -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Contenedor principal de la página de movimientos -->
+  <div class="container transactions my-5">
+    <!-- Título principal -->
+    <h2 class="text-center mb-4">Últimos Movimientos</h2>
+
+    <!-- Formulario de filtro de movimientos -->
+    <form class="mb-4 d-flex justify-content-center gap-2">
+      <div class="col-md-6">
+        <!-- Etiqueta para el filtro -->
+        <label for="filtro" class="form-label">Filtrar por tipo de movimiento:</label>
+        <!-- Select con opciones de tipo de movimiento -->
+        <select id="filtro" class="form-select">
+          <option value="todos">Todos</option>
+          <option value="compra">Compra</option>
+          <option value="deposito">Depósito</option>
+          <option value="transferencia">Transferencia</option>
+        </select>
+      </div>
+      <!-- Botón para aplicar el filtro -->
+      <button type="button" id="btnBuscar" class="btn btn-primary btn-buscar">Buscar</button>
+    </form>
+
+    <!-- Lista de movimientos -->
+    <div id="lista-movimientos" class="row gy-3">
+      <!-- Aquí se insertarán dinámicamente los movimientos desde transactions.js -->
+    </div>
+
+    <!-- Botones inferiores de navegación -->
+    <div class="d-flex flex-column align-items-center gap-2 mt-4">
+      <!-- Botón para volver al menú principal -->
+      <a href="menu.html" class="btn btn-secondary btn-fit">Volver al Menú Principal</a>
+      <!-- Botón para cerrar sesión -->
+      <a href="login.html" class="btn btn-danger btn-fit">Cerrar Sesión</a>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS: necesario para que funcionen componentes dinámicos como el modal o dropdown -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Archivo JS propio donde se programa la lógica de mostrar y filtrar movimientos -->
+  <script src="js/transactions.js"></script>
+</body>
+</html>

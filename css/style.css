@@ -1,0 +1,218 @@
+/* Estilos generales del cuerpo de la página */
+body {
+  background-color: #ffffff; /* Fondo blanco */
+  font-family: 'Segoe UI', sans-serif; /* Fuente principales */
+  padding: 20px; /* Espaciado interno alrededor del contenido */
+}
+
+/*Index*/
+.Bienvenida-card {
+background: #ffffff; /* Tarjeta blanca */
+padding: 30px;
+border-radius: 10px; /* Bordes redondeados */
+box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra */
+text-align: center;
+max-width: 100%;
+}
+
+.btn-login {
+background-color: #5963e4; /* Botón lila */
+color: #ffffff;
+border: none;
+padding: 10px 20px;
+border-radius: 6px;
+font-size: 1rem;
+cursor: pointer;
+margin-top: 20px;
+}
+
+p{
+  color: #5963e4;
+}
+
+/* --- LOGIN --- */
+/* Contenedor principal de la página de login */
+.container.login {
+  max-width: 100%; /* Ocupa todo el ancho disponible */
+  padding: 15px; /* Espaciado interno */
+}
+
+/* Tarjeta del login */
+.login-card {
+  max-width: 400px; /* Ancho máximo de la tarjeta */
+  width: 100%; /* Ocupa todo el ancho disponible dentro del límite */
+  border-radius: 8px; /* Bordes redondeados */
+}
+
+/* --- MENÚ --- */
+/* Contenedor principal del menú */
+.container.menu {
+  max-width: 100%; /* Ocupa todo el ancho */
+  margin: 0 auto; /* Centrado horizontal */
+  padding: 15px; /* Espaciado interno */
+  text-align: center; /* Centra el texto */
+}
+
+/* Tarjeta del menú */
+.menu-card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25); /* Sombra para dar efecto de elevación */
+  border-radius: 8px; /* Bordes redondeados */
+}
+
+/* Botón primario personalizado para el menú */
+.menu-btn-primary {
+  background-color: #5963e4; /* Color lila */
+  color: #ffffff; /* Texto blanco */
+}
+.menu-btn-primary:hover {
+  background-color: #454ed1; /* Color más oscuro al pasar el mouse */
+  color: #ffffff;
+}
+
+/* --- SENDMONEY --- */
+/* Contenedor principal de la página de enviar dinero */
+.container.sendmoney {
+  max-width: 100%;
+  margin: 0 auto; /* Centrado horizontal */
+  padding: 15px;
+  text-align: center; /* Centra el texto */
+}
+
+/* Tarjeta de enviar dinero */
+.sendmoney-card {
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.25); /* Sombra */
+}
+
+/* Campo de búsqueda centrado y limitado en ancho */
+.sendmoney-search {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+/* Botón de búsqueda centrado */
+.sendmoney-search-btn {
+  margin: 0 auto;
+  display: block; /* Se muestra como bloque para poder centrar */
+}
+
+/* Botón para agregar contacto */
+.sendmoney-add-btn {
+  font-size: 0.875rem; /* Tamaño de fuente más pequeño */
+  padding: 6px 12px; /* Espaciado interno */
+}
+
+/* Botones ajustados al texto */
+.sendmoney-btn-fit {
+  padding: 8px 16px;
+  font-size: 1rem;
+  width: auto; /* Ajusta al contenido */
+  min-width: unset; /* Elimina ancho mínimo */
+  max-width: 100%; /* No excede el ancho disponible */
+}
+
+/* Navegación dentro de la tarjeta de enviar dinero */
+.sendmoney-card .d-flex {
+  flex-direction: column; /* Botones en columna */
+  gap: 10px; /* Espacio entre botones */
+}
+.sendmoney-card .d-flex a.sendmoney-btn-fit {
+  margin: 0 auto; /* Centra los botones */
+}
+
+/* --- BOTONES GENERALES --- */
+/* Estilo base para todos los botones */
+.btn {
+  font-size: 1rem; /* Tamaño de fuente estándar */
+  border: none; /* Sin borde */
+}
+
+/* Botones lilas (primarios y secundarios) */
+.btn-primary {
+  background-color: #5963e4 !important; /* Color lila */
+  color: #ffffff;
+}
+.btn-primary:hover {
+  background-color: #454ed1 !important; /* Más oscuro al pasar el mouse */
+  color: #ffffff;
+}
+
+.btn-secondary {
+  background-color: #5963e4 !important;
+  color: #ffffff;
+}
+.btn-secondary:hover {
+  background-color: #454ed1 !important;
+  color: #ffffff;
+}
+
+/* Botón rojo (cerrar sesión) */
+.btn-danger {
+  background-color: #e45959; /* Rojo */
+  color: #ffffff;
+}
+.btn-danger:hover {
+  background-color: #c94444; /* Rojo más oscuro al pasar el mouse */
+  color: #ffffff;
+}
+
+/* Botón verde (confirmar, enviar) */
+.btn-success {
+  background-color: rgb(54, 165, 10); /* Verde */
+  color: #ffffff;
+}
+.btn-success:hover {
+  background-color: rgb(44, 140, 8); /* Verde más oscuro */
+  color: #ffffff;
+}
+
+/* Botón info (ej. búsqueda) */
+.btn-info {
+  background-color: rgb(7, 193, 214); /* Celeste */
+  color: #ffffff;
+}
+.btn-info:hover {
+  background-color: rgb(17, 166, 180); /* Celeste más oscuro */
+  color: #ffffff;
+}
+
+/* --- TOAST --- */
+/* Contenedor de mensajes emergentes (toast) */
+.toast-container {
+  z-index: 1055; /* Se asegura que aparezca por encima de otros elementos */
+}
+
+/* --- TRANSACTIONS --- */
+/* Contenedor principal de la página de movimientos */
+.container.transactions {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+/* Títulos principales */
+h2 {
+  font-weight: 600; /* Negrita */
+  color: #343a40; /* Gris oscuro */
+}
+
+/* Tarjetas de movimientos */
+.card {
+  border-radius: 10px; /* Bordes redondeados */
+  transition: transform 0.2s ease-in-out; /* Animación suave al pasar el mouse */
+}
+.card:hover {
+  transform: scale(1.02); /* Efecto de zoom ligero */
+}
+
+/* Título dentro de la tarjeta */
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* Texto dentro de la tarjeta */
+.card-text {
+  font-size: 0.95rem;
+  color: #555; /* Gris medio */
+}
