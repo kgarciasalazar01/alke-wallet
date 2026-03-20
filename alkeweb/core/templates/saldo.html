@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="card shadow p-4 mb-4">
+        <h2 class="text-center">Hola, {{ request.user.username }}</h2>
+        <h4 class="text-center mt-3">Saldo disponible:</h4>
+        <h1 class="text-center text-success fw-bold">${{ saldo }}</h1>
+    </div>
+
+    <h3 class="mt-5">Historial de transacciones</h3>
+
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Fecha</th>
+                    <th>Tipo</th>
+                    <th>Monto</th>
+                    <th>Detalle</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for t in transacciones %}
+                <tr>
+                    <td>{{ t.fecha|date:"d/m/Y H:i" }}</td>
+
+                    <td>
+                        {% if t.tipo == "transferencia" %}
+                            {% if t.emisor == request.user %}
+                                <span class="text-danger fw-bold">⬆️ Enviado</span>
+                            {% elif t.receptor == request.user %}
+                                <span class="text-success fw-bold">⬇️ Recibido</span>
+                            {% else %}
+                                <span class="fw-bold">{{ t.tipo }}</span>
+                            {% endif %}
+                        {% elif t.tipo == "deposito" %}
+                            <span class="text-success fw-bold">⬇️ Depósito</span>
+                        {% elif t.tipo == "retiro" %}
+                            <span class="text-danger fw-bold">⬆️ Retiro</span>
+                        {% else %}
+                            {{ t.tipo }}
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {% if t.emisor == request.user %}
+                            <span class="text-danger fw-bold">- ${{ t.monto }}</span>
+                        {% elif t.receptor == request.user %}
+                            <span class="text-success fw-bold">+ ${{ t.monto }}</span>
+                        {% else %}
+                            <span>$ {{ t.monto }}</span>
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {% if t.tipo == "transferencia" %}
+                            {% if t.emisor == request.user and t.receptor %}
+                                Enviado a <strong>{{ t.receptor.username }}</strong>
+                            {% elif t.receptor == request.user and t.emisor %}
+                                Recibido de <strong>{{ t.emisor.username }}</strong>
+                            {% else %}
+                                Transferencia
+                            {% endif %}
+                        {% elif t.tipo == "deposito" %}
+                            Depósito a la cuenta
+                        {% elif t.tipo == "retiro" %}
+                            Retiro desde la cuenta
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="text-center text-muted">
+                        No hay transacciones registradas.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

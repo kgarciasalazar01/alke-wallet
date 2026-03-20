@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2 class="text-center mb-4 fw-bold">Enviar dinero</h2>
+
+    <!-- OPCIONES -->
+    <div class="row g-3 mb-4">
+
+        <!-- CONTACTO GUARDADO -->
+        <div class="col-md-6">
+            <div id="card_existente" class="card p-3 shadow-sm border-primary option-card active">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-people-fill fs-2 text-primary me-3"></i>
+                    <div>
+                        <h5 class="mb-1 fw-semibold">Contacto guardado</h5>
+                        <p class="text-muted mb-0">Selecciona un destinatario de tu agenda</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NUEVO DESTINATARIO -->
+        <div class="col-md-6">
+            <div id="card_nuevo" class="card p-3 shadow-sm option-card">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-person-plus-fill fs-2 text-success me-3"></i>
+                    <div>
+                        <h5 class="mb-1 fw-semibold">Nuevo destinatario</h5>
+                        <p class="text-muted mb-0">Agrega un nuevo contacto</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- BLOQUE CONTACTO EXISTENTE -->
+    <div id="bloque_existente" class="card shadow p-4 mb-4">
+        <h5 class="mb-3 fw-semibold">Selecciona un contacto</h5>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label class="form-label">Destinatario</label>
+                <select name="destinatario" class="form-select" required>
+                    <option value="">Selecciona un contacto</option>
+                    {% for c in contactos %}
+                    <option value="{{ c.id }}">{{ c.nombre }} ({{ c.cuenta }})</option>
+                    {% endfor %}
+                </select>
+
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Monto a enviar</label>
+                <input type="number" step="0.01" name="monto" class="form-control" required>
+            </div>
+
+            <button type="submit" class="btn btn-success w-100">Enviar dinero</button>
+        </form>
+    </div>
+
+    <!-- BLOQUE NUEVO DESTINATARIO -->
+    <div id="bloque_nuevo" class="card shadow p-4 mb-4 d-none">
+        <h5 class="mb-3 fw-semibold">Agregar nuevo destinatario</h5>
+
+        <p class="text-muted">Serás redirigida a la sección de contactos para agregar un nuevo destinatario.</p>
+
+        <a href="{% url 'contactos' %}?next=enviar_dinero" class="btn btn-primary w-100">
+            <i class="bi bi-person-plus-fill me-2"></i>Agregar contacto
+        </a>
+    </div>
+
+</div>
+
+<style>
+    .option-card {
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: 0.25s ease;
+        border-radius: 12px;
+    }
+
+    .option-card:hover {
+        background: #f8f9fa;
+        border-color: #0d6efd;
+    }
+
+    .option-card.active {
+        border-color: #0d6efd;
+        background: #e9f2ff;
+    }
+</style>
+
+<script>
+    const cardExistente = document.getElementById("card_existente");
+    const cardNuevo = document.getElementById("card_nuevo");
+    const bloqueExistente = document.getElementById("bloque_existente");
+    const bloqueNuevo = document.getElementById("bloque_nuevo");
+
+    cardExistente.addEventListener("click", () => {
+        cardExistente.classList.add("active");
+        cardNuevo.classList.remove("active");
+        bloqueExistente.classList.remove("d-none");
+        bloqueNuevo.classList.add("d-none");
+    });
+
+    cardNuevo.addEventListener("click", () => {
+        cardNuevo.classList.add("active");
+        cardExistente.classList.remove("active");
+        bloqueNuevo.classList.remove("d-none");
+        bloqueExistente.classList.add("d-none");
+    });
+</script>
+
+{% endblock %}
